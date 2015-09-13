@@ -55,6 +55,6 @@ app.locals.HOST = '' || process.env.MAIL_HOST;
 app.locals.USER = '' || process.env.MAIL_USER;
 app.locals.PASS = '' || process.env.MAIL_PASS;
 app.locals.PORT = '25' || process.env.MAIL_PORT;
-app.locals.FROM = 'mailapp@iappdragon.com' || process.env.MAIL_FROM;
+app.locals.FROM = '' || process.env.MAIL_FROM;
 
 module.exports = app;
