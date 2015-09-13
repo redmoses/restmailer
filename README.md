@@ -81,19 +81,19 @@ curl -H "Content-Type: application/json" -X POST -d '[{"to":"address@email.com",
 ## Deployment (using Docker)
 
 The deployment steps are given below
-1. Clone the repository using the following command
+* Clone the repository using the following command
 
 ```bash
 git clone git@gitlab.iappdragon.com:moses/mail-app.git
 ```
-2. Build the docker image
+* Build the docker image
 
 ```bash
 # i'm assuming you've cloned the app in 'mail-app' directory
 cd mail-app
 make build
 ```
-3. Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are
+* Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are
 
   * MAIL_HOST - the SMTP server host
   * MAIL_PORT - SMTP server port, default value is 25
@@ -101,13 +101,13 @@ make build
   * MAIL_USER - the SMTP server username
   * MAIL_PASS - the SMTP server password
 
-  You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.
-  ```bash
-  # i'm assuming you are inside the app directory
-  cp example.conf prod.conf
-  vim prod.conf
-  ```
-4. Run the application with the following command
+You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.
+```bash
+# i'm assuming you are inside the app directory
+cp example.conf prod.conf
+vim prod.conf
+```
+* Run the application with the following command
 
 ```bash
 make start
