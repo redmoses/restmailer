@@ -1,7 +1,7 @@
 ROOT=$(shell pwd)
 APP_NAME=mailapp
 CONTAINER=ma01
-INIT:=$(shell if [ ! -e "prod.conf" ]; then cp conf.example prod.conf; fi)
+INIT:=$(shell if [ ! -e "prod.conf" ]; then cp example.conf prod.conf; fi)
 include prod.conf
 all: build start
 build:
