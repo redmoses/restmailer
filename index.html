@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Restmailer by redmoses</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Restmailer</h1>
+        <h2>Send emails using REST</h2>
+        <a href="https://github.com/redmoses/restmailer" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="rest-mailer" class="anchor" href="#rest-mailer" aria-hidden="true"><span class="octicon octicon-link"></span></a>REST Mailer</h1>
+
+<h1>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h1>
+
+<p>My company has an application that performs various jobs upon receiving specifically formatted emails. Testing the application with a usual web client like Gmail or desktop clients like Thunderbird is a hassle and time consuming. So to ease the testing process I've written this app. It lets you send emails using JSON REST requests.</p>
+
+<h2>
+<a id="technologies" class="anchor" href="#technologies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technologies</h2>
+
+<ul>
+<li>Node.js</li>
+<li>Express.js (body-parser, debug)</li>
+<li>Nodemailer</li>
+<li>Async</li>
+</ul>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>For sending emails you will have to post the required data to the applications designated URL</p>
+
+<h2>
+<a id="request" class="anchor" href="#request" aria-hidden="true"><span class="octicon octicon-link"></span></a>Request</h2>
+
+<div class="highlight highlight-yaml"><pre><span class="pl-s"><span class="pl-ent">Request Type:</span> <span class="pl-s">POST</span></span>
+<span class="pl-s"><span class="pl-ent">URL:</span> <span class="pl-s">/sendmail/</span></span></pre></div>
+
+<h2>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters</h2>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">Type</th>
+<th align="right">Required</th>
+<th align="right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>to</td>
+<td align="center">string</td>
+<td align="right">True</td>
+<td align="right">Address of the recipient</td>
+</tr>
+<tr>
+<td>subject</td>
+<td align="center">string</td>
+<td align="right">True</td>
+<td align="right">Subject of the email</td>
+</tr>
+<tr>
+<td>message</td>
+<td align="center">string</td>
+<td align="right">True</td>
+<td align="right">Email message</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="sample-request-data" class="anchor" href="#sample-request-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample request data</h2>
+
+<p>An email object</p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email<span class="pl-pds">"</span></span>
+}</pre></div>
+
+<p>For a successful request you would have to send an array of this object</p>
+
+<div class="highlight highlight-json"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email<span class="pl-pds">"</span></span>
+  }
+]</pre></div>
+
+<h2>
+<a id="for-sending-the-same-email-to-multiple-addresses" class="anchor" href="#for-sending-the-same-email-to-multiple-addresses" aria-hidden="true"><span class="octicon octicon-link"></span></a>For sending the same email to multiple addresses</h2>
+
+<div class="highlight highlight-json"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com, address2@email.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email<span class="pl-pds">"</span></span>
+  }
+]</pre></div>
+
+<h2>
+<a id="for-sending-multiple-emails" class="anchor" href="#for-sending-multiple-emails" aria-hidden="true"><span class="octicon octicon-link"></span></a>For sending multiple emails</h2>
+
+<div class="highlight highlight-json"><pre>[
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email<span class="pl-pds">"</span></span>
+  },
+  {
+    <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address2@email.com<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject 2<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email number 2<span class="pl-pds">"</span></span>
+  }
+]</pre></div>
+
+<h2>
+<a id="curl-request" class="anchor" href="#curl-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>CURL request</h2>
+
+<p>I am assuming you are running the app on port 3000 on localhost</p>
+
+<div class="highlight highlight-bash"><pre>curl -H <span class="pl-s"><span class="pl-pds">"</span>Content-Type: application/json<span class="pl-pds">"</span></span> -X POST -d <span class="pl-s"><span class="pl-pds">'</span>[{"to":"address@email.com","subject":"Test Subject","message":"This is a test email"}]<span class="pl-pds">'</span></span> http://localhost:3000/sendmail</pre></div>
+
+<h1>
+<a id="deployment-using-docker" class="anchor" href="#deployment-using-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment (using Docker)</h1>
+
+<p>The deployment steps are given below</p>
+
+<ul>
+<li>Clone the repository using the following command</li>
+</ul>
+
+<div class="highlight highlight-bash"><pre>git clone git@github.com:redmoses/restmailer.git</pre></div>
+
+<ul>
+<li>Build the docker image</li>
+</ul>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># i'm assuming you've cloned the app in 'restmailer' directory</span>
+<span class="pl-c1">cd</span> restmailer
+make build</pre></div>
+
+<ul>
+<li>
+<p>Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are</p>
+
+<ul>
+<li>MAIL_HOST - the SMTP server host</li>
+<li>MAIL_PORT - SMTP server port, default value is 25</li>
+<li>MAIL_FROM - the SMTP address for the app</li>
+<li>MAIL_USER - the SMTP server username</li>
+<li>MAIL_PASS - the SMTP server password</li>
+</ul>
+</li>
+</ul>
+
+<p>You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># i'm assuming you are inside the app directory</span>
+cp example.conf prod.conf
+vim prod.conf</pre></div>
+
+<ul>
+<li>Run the application with the following command</li>
+</ul>
+
+<div class="highlight highlight-bash"><pre>make start</pre></div>
+
+<h1>
+<a id="management-docker" class="anchor" href="#management-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Management (Docker)</h1>
+
+<p>You can manage the docker container by using the following Makefile commands</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># start app</span>
+make start
+<span class="pl-c"># stop app</span>
+make stop
+<span class="pl-c"># restart app</span>
+make restart
+<span class="pl-c"># see logs</span>
+make logs
+<span class="pl-c"># shell access</span>
+make shell</pre></div>
+
+<p>Feel free to play around with the Makefile and add your own commands if necessary</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/redmoses/restmailer/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/redmoses/restmailer/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/redmoses/restmailer"></a> is maintained by <a href="https://github.com/redmoses">redmoses</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
