@@ -1,7 +1,14 @@
 REST Mailer
 ============
 
-Send emails using REST. The application currently has only one method for sending emails as described below -
+# Background
+My company has an application that performs various jobs upon receiving specifically formatted emails. Testing the application with a usual web client like Gmail or desktop clients like Thunderbird is a hassle and time consuming. So to ease the testing process I've written this app. It lets you send emails using JSON REST requests.
+
+## Technologies
+* Node.js
+* Express.js (body-parser, debug)
+* Nodemailer
+* Async
 
 # Usage
 
