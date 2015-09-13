@@ -38,6 +38,6 @@ Required: false
 I am assuming you are running the app on port 3000 on localhost
 ```shell
 curl -H "Content-Type: application/json" -X POST \
--d '{"to":"to@email.com","subject":"Test Subject","message":"This is a test email"}' \
+-d '[{"to":"to@email.com","subject":"Test Subject","message":"This is a test email"}]' \
 http://localhost:3000/sendmail
 ```
