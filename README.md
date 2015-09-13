@@ -30,7 +30,6 @@ URL: /sendmail/
 | message | string | True      | Email message            |
 
 ## Sample request data
-
 An email object
 
 ```json
