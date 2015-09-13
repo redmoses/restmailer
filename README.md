@@ -3,12 +3,13 @@ MailApp
 
 Send emails using REST. The application currently has only one method for sending emails as described below -
 
-#### Request Description
+#### Usage Description
 For sending emails you will have to post the required data to the applications designated URL
 
-##### Request type
+##### Request
 ```yaml
-POST: /sendmail/
+Request Type: POST
+URL: /sendmail/
 ```
 ##### Parameters
 ```yaml
