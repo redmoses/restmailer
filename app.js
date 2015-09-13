@@ -13,7 +13,9 @@ var app = express();
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use('/', routes);
 
@@ -48,5 +50,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// SMTP Server Config
+app.locals.HOST = '' || process.env.MAIL_HOST;
+app.locals.USER = '' || process.env.MAIL_USER;
+app.locals.PASS = '' || process.env.MAIL_PASS;
+app.locals.PORT = '25' || process.env.MAIL_PORT;
+app.locals.FROM = 'mailapp@iappdragon.com' || process.env.MAIL_FROM;
 
 module.exports = app;
