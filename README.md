@@ -91,7 +91,7 @@ The deployment steps are given below
 * Clone the repository using the following command
 
 ```bash
-git clone git@gitlab.iappdragon.com:moses/restmailer.git
+git clone git@github.com:redmoses/restmailer.git
 ```
 * Build the docker image
 
