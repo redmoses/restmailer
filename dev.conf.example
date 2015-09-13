@@ -1,5 +1,0 @@
-MAIL_HOST=smtp.example.com
-MAIL_PORT=25
-MAIL_FROM=dummy@example.com
-MAIL_USER=dummy
-MAIL_PASS=dummy

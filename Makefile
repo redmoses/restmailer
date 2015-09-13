@@ -1,11 +1,11 @@
 ROOT=$(shell pwd)
 APP_NAME=mailapp
 CONTAINER=ma01
+INIT:=$(shell if [ ! -e "prod.conf" ]; then cp conf.example prod.conf; fi)
+include prod.conf
 build:
 	docker build -t $(APP_NAME) .
 start:
-	$(shell if [ ! -e "prod.conf" ]; then cp dev.conf prod.conf; fi); \
-	$(shell source prod.conf); \
 	docker rm $(CONTAINER); \
 	docker run -d -p 3000:3000 --name $(CONTAINER) \
 	-e "MAIL_HOST=$(MAIL_HOST)" \
