@@ -96,8 +96,8 @@ git clone git@gitlab.iappdragon.com:moses/restmailer.git
 * Build the docker image
 
 ```bash
-# i'm assuming you've cloned the app in 'mail-app' directory
-cd mail-app
+# i'm assuming you've cloned the app in 'restmailer' directory
+cd restmailer
 make build
 ```
 * Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are
