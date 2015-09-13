@@ -1,6 +1,6 @@
 ROOT=$(shell pwd)
-APP_NAME = 'mailapp'
-CONTAINER = 'ma01'
+APP_NAME=mailapp
+CONTAINER=ma01
 build:
 	docker build -t $(APP_NAME) .
 start:
