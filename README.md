@@ -1,20 +1,20 @@
-MailApp
-=========
+REST Mailer
+============
 
 Send emails using REST. The application currently has only one method for sending emails as described below -
 
-## Usage
+# Usage
 
 For sending emails you will have to post the required data to the applications designated URL
 
-### Request
+## Request
 
 ```yaml
 Request Type: POST
 URL: /sendmail/
 ```
 
-### Parameters
+## Parameters
 
 | Name    | Type   | Required  | Description              |
 | ------- |:------:| ---------:| -----------------------: |
@@ -22,7 +22,7 @@ URL: /sendmail/
 | subject | string | True      | Subject of the email     |
 | message | string | True      | Email message            |
 
-### Sample request data
+## Sample request data
 An email object
 
 ```json
@@ -43,7 +43,7 @@ For a successful request you would have to send an array of this object
   }
 ]
 ```
-### For sending the same email to multiple addresses
+## For sending the same email to multiple addresses
 
 ```json
 [
@@ -54,7 +54,7 @@ For a successful request you would have to send an array of this object
   }
 ]
 ```
-### For sending multiple emails
+## For sending multiple emails
 
 ```json
 [
@@ -71,14 +71,14 @@ For a successful request you would have to send an array of this object
 ]
 ```
 
-### CURL request
+## CURL request
 
 I am assuming you are running the app on port 3000 on localhost
 
 ```bash
 curl -H "Content-Type: application/json" -X POST -d '[{"to":"address@email.com","subject":"Test Subject","message":"This is a test email"}]' http://localhost:3000/sendmail
 ```
-## Deployment (using Docker)
+# Deployment (using Docker)
 
 The deployment steps are given below
 * Clone the repository using the following command
@@ -112,7 +112,7 @@ vim prod.conf
 ```bash
 make start
 ```
-## Management (Docker)
+# Management (Docker)
 
 You can manage the docker container by using the following Makefile commands
 
