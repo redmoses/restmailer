@@ -130,13 +130,13 @@ cd restmailer
 make build
 ```
 * Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are
-
-  * MAIL_HOST - the SMTP server host
-  * MAIL_PORT - SMTP server port, default value is 25
-  * MAIL_FROM - the SMTP address for the app
-  * MAIL_USER - the SMTP server username
-  * MAIL_PASS - the SMTP server password
-
+```yaml
+MAIL_HOST: the SMTP server host
+MAIL_PORT: SMTP server port, default value is 25
+MAIL_FROM: the SMTP address for the app
+MAIL_USER: the SMTP server username
+MAIL_PASS: the SMTP server password
+```
 You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.
 ```bash
 # i'm assuming you are inside the app directory
