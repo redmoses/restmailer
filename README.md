@@ -26,8 +26,11 @@ URL: /sendmail/
 | Name    | Type   | Required  | Description              |
 | ------- |:------:| ---------:| -----------------------: |
 | to      | string | True      | Address of the recipient |
-| subject | string | True      | Subject of the email     |
-| message | string | True      | Email message            |
+| subject | string | False     | Subject of the email     |
+| message | string | False     | Email message            |
+| from*   | string | False     | From address             |
+
+*The from address can be set in both the request parameter and also in the application config. Request parameter takes precedence over config*
 
 ## Sample request data
 An email object
