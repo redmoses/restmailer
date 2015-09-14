@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.iappdragon.com:dev/restmailer.git"
+    "url": "https://github.com/redmoses/restmailer.git"
   },
   "keywords": [
     "mail",

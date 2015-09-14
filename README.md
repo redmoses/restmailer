@@ -85,13 +85,42 @@ I am assuming you are running the app on port 3000 on localhost
 ```bash
 curl -H "Content-Type: application/json" -X POST -d '[{"to":"address@email.com","subject":"Test Subject","message":"This is a test email"}]' http://localhost:3000/sendmail
 ```
+## Response
+
+The response includes all the email objects that were posted with the request. An example response -
+
+```json
+{
+  "status": "1 out of 2 request(s) successfully processed. 1 request(s) failed.",
+  "emails": [
+    {
+      "from": "restmailer@email.com",
+      "to": "address@email.com",
+      "subject": "Test",
+      "time": "Mon Sep 14 2015 12:55:10 GMT+0000 (UTC)",
+      "status": "success"
+    },
+    {
+      "from": "restmailer@email.com",
+      "subject": "Test",
+      "time": "Mon Sep 14 2015 12:55:10 GMT+0000 (UTC)",
+      "status": "failure",
+      "error": {
+        "code": "EENVELOPE"
+      }
+    }
+  ]
+}
+```
+As you can see the response object contains all the email requests (including the failed ones) for better tracking.
+
 # Deployment (using Docker)
 
 The deployment steps are given below
 * Clone the repository using the following command
 
 ```bash
-git clone git@github.com:redmoses/restmailer.git
+git clone https://github.com/redmoses/restmailer.git
 ```
 * Build the docker image
 
