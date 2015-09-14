@@ -54,7 +54,7 @@
 <h2>
 <a id="request" class="anchor" href="#request" aria-hidden="true"><span class="octicon octicon-link"></span></a>Request</h2>
 
-<div class="highlight highlight-yaml"><pre><span class="pl-s"><span class="pl-ent">Request Type:</span> <span class="pl-s">POST</span></span>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">Request Type:</span> <span class="pl-s">POST</span></span>
 <span class="pl-s"><span class="pl-ent">URL:</span> <span class="pl-s">/sendmail/</span></span></pre></div>
 
 <h2>
@@ -96,7 +96,7 @@
 
 <p>An email object</p>
 
-<div class="highlight highlight-json"><pre>{
+<div class="highlight highlight-source-json"><pre>{
   <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
   <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
   <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>This is a test email<span class="pl-pds">"</span></span>
@@ -104,7 +104,7 @@
 
 <p>For a successful request you would have to send an array of this object</p>
 
-<div class="highlight highlight-json"><pre>[
+<div class="highlight highlight-source-json"><pre>[
   {
     <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
@@ -115,7 +115,7 @@
 <h2>
 <a id="for-sending-the-same-email-to-multiple-addresses" class="anchor" href="#for-sending-the-same-email-to-multiple-addresses" aria-hidden="true"><span class="octicon octicon-link"></span></a>For sending the same email to multiple addresses</h2>
 
-<div class="highlight highlight-json"><pre>[
+<div class="highlight highlight-source-json"><pre>[
   {
     <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com, address2@email.com<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
@@ -126,7 +126,7 @@
 <h2>
 <a id="for-sending-multiple-emails" class="anchor" href="#for-sending-multiple-emails" aria-hidden="true"><span class="octicon octicon-link"></span></a>For sending multiple emails</h2>
 
-<div class="highlight highlight-json"><pre>[
+<div class="highlight highlight-source-json"><pre>[
   {
     <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
     <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test Subject<span class="pl-pds">"</span></span>,
@@ -144,7 +144,36 @@
 
 <p>I am assuming you are running the app on port 3000 on localhost</p>
 
-<div class="highlight highlight-bash"><pre>curl -H <span class="pl-s"><span class="pl-pds">"</span>Content-Type: application/json<span class="pl-pds">"</span></span> -X POST -d <span class="pl-s"><span class="pl-pds">'</span>[{"to":"address@email.com","subject":"Test Subject","message":"This is a test email"}]<span class="pl-pds">'</span></span> http://localhost:3000/sendmail</pre></div>
+<div class="highlight highlight-source-shell"><pre>curl -H <span class="pl-s"><span class="pl-pds">"</span>Content-Type: application/json<span class="pl-pds">"</span></span> -X POST -d <span class="pl-s"><span class="pl-pds">'</span>[{"to":"address@email.com","subject":"Test Subject","message":"This is a test email"}]<span class="pl-pds">'</span></span> http://localhost:3000/sendmail</pre></div>
+
+<h2>
+<a id="response" class="anchor" href="#response" aria-hidden="true"><span class="octicon octicon-link"></span></a>Response</h2>
+
+<p>The response includes all the email objects that were posted with the request. An example response -</p>
+
+<div class="highlight highlight-source-json"><pre>{
+  <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1 out of 2 request(s) successfully processed. 1 request(s) failed.<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>emails<span class="pl-pds">"</span></span>: [
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>from<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>restmailer@email.com<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>to<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>address@email.com<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Mon Sep 14 2015 12:55:10 GMT+0000 (UTC)<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-s"><span class="pl-pds">"</span>from<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>restmailer@email.com<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>subject<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Test<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Mon Sep 14 2015 12:55:10 GMT+0000 (UTC)<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>status<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>failure<span class="pl-pds">"</span></span>,
+      <span class="pl-s"><span class="pl-pds">"</span>error<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>code<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>EENVELOPE<span class="pl-pds">"</span></span>
+      }
+    }
+  ]
+}</pre></div>
+
+<p>As you can see the response object contains all the email requests (including the failed ones) for better tracking.</p>
 
 <h1>
 <a id="deployment-using-docker" class="anchor" href="#deployment-using-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment (using Docker)</h1>
@@ -155,13 +184,13 @@
 <li>Clone the repository using the following command</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre>git clone git@github.com:redmoses/restmailer.git</pre></div>
+<div class="highlight highlight-source-shell"><pre>git clone https://github.com/redmoses/restmailer.git</pre></div>
 
 <ul>
 <li>Build the docker image</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre><span class="pl-c"># i'm assuming you've cloned the app in 'restmailer' directory</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># i'm assuming you've cloned the app in 'restmailer' directory</span>
 <span class="pl-c1">cd</span> restmailer
 make build</pre></div>
 
@@ -181,7 +210,7 @@ make build</pre></div>
 
 <p>You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.</p>
 
-<div class="highlight highlight-bash"><pre><span class="pl-c"># i'm assuming you are inside the app directory</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># i'm assuming you are inside the app directory</span>
 cp example.conf prod.conf
 vim prod.conf</pre></div>
 
@@ -189,14 +218,14 @@ vim prod.conf</pre></div>
 <li>Run the application with the following command</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre>make start</pre></div>
+<div class="highlight highlight-source-shell"><pre>make start</pre></div>
 
 <h1>
 <a id="management-docker" class="anchor" href="#management-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Management (Docker)</h1>
 
 <p>You can manage the docker container by using the following Makefile commands</p>
 
-<div class="highlight highlight-bash"><pre><span class="pl-c"># start app</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># start app</span>
 make start
 <span class="pl-c"># stop app</span>
 make stop
