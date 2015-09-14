@@ -79,17 +79,25 @@
 <tr>
 <td>subject</td>
 <td align="center">string</td>
-<td align="right">True</td>
+<td align="right">False</td>
 <td align="right">Subject of the email</td>
 </tr>
 <tr>
 <td>message</td>
 <td align="center">string</td>
-<td align="right">True</td>
+<td align="right">False</td>
 <td align="right">Email message</td>
+</tr>
+<tr>
+<td>from*</td>
+<td align="center">string</td>
+<td align="right">False</td>
+<td align="right">From address</td>
 </tr>
 </tbody>
 </table>
+
+<p><em>The from address can be set in both the request parameter and also in the application config. Request parameter takes precedence over config</em></p>
 
 <h2>
 <a id="sample-request-data" class="anchor" href="#sample-request-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sample request data</h2>
@@ -195,18 +203,14 @@
 make build</pre></div>
 
 <ul>
-<li>
-<p>Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are</p>
+<li>Configure the application with mail information. The application requires 4 values to be pre-configured before it can send emails. They are</li>
+</ul>
 
-<ul>
-<li>MAIL_HOST - the SMTP server host</li>
-<li>MAIL_PORT - SMTP server port, default value is 25</li>
-<li>MAIL_FROM - the SMTP address for the app</li>
-<li>MAIL_USER - the SMTP server username</li>
-<li>MAIL_PASS - the SMTP server password</li>
-</ul>
-</li>
-</ul>
+<div class="highlight highlight-source-yaml"><pre><span class="pl-s"><span class="pl-ent">MAIL_HOST:</span> <span class="pl-s">the SMTP server host</span></span>
+<span class="pl-s"><span class="pl-ent">MAIL_PORT:</span> <span class="pl-s">SMTP server port, default value is 25</span></span>
+<span class="pl-s"><span class="pl-ent">MAIL_FROM:</span> <span class="pl-s">the SMTP address for the app</span></span>
+<span class="pl-s"><span class="pl-ent">MAIL_USER:</span> <span class="pl-s">the SMTP server username</span></span>
+<span class="pl-s"><span class="pl-ent">MAIL_PASS:</span> <span class="pl-s">the SMTP server password</span></span></pre></div>
 
 <p>You can copy the example config file 'example.conf' to a new file called 'prod.conf'. After that put in your relevant information on this file, replacing the dummy values.</p>
 
